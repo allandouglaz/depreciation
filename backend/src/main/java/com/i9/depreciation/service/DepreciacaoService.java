@@ -1,15 +1,11 @@
 package com.i9.depreciation.service;
 
-import com.i9.depreciation.dto.DepreciacaoDto;
 import com.i9.depreciation.dto.DepreciacaoResponseDto;
 import com.i9.depreciation.model.Depreciacao;
 import com.i9.depreciation.repository.DepreciacaoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class DepreciacaoService {
@@ -20,7 +16,7 @@ public class DepreciacaoService {
         this.repository = repository;
     }
 
-    public DepreciacaoResponseDto calcularDepreciacao(DepreciacaoDto dto) {
+    public DepreciacaoResponseDto calcularDepreciacao(Depreciacao dto) {
         if (dto.getVidaUtil() <= 0) {
             throw new IllegalArgumentException("A vida útil deve ser maior que zero.");
         }
