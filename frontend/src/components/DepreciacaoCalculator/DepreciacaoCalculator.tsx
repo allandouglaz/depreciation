@@ -11,17 +11,21 @@ const DepreciacaoCalculator: React.FC = () => {
     vidaUtil: 0
   });
   const [resultado, setResultado] = useState<DepreciacaoResponse | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({ ...form, [e.target.name]: Number(e.target.value) }); // Converte para número
   };
 
   const handleSubmit = async () => {
+    setError(null);
     try {
       const response = await calcularDepreciacao(form);
+      console.log("Resposta da API:", response); // Debug
       setResultado(response);
     } catch (error) {
       console.error("Erro ao calcular depreciação", error);
+      setError("Falha ao conectar ao servidor.");
     }
   };
 
@@ -35,6 +39,8 @@ const DepreciacaoCalculator: React.FC = () => {
       >
         Calcular
       </button>
+
+      {error && <p className="text-red-500 mt-2">{error}</p>}
 
       {resultado && <ResultadoDepreciacao resultado={resultado} />}
     </div>

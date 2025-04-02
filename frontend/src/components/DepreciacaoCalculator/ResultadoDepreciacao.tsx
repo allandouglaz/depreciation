@@ -9,6 +9,8 @@ type Props = {
 const ResultadoDepreciacao: React.FC<Props> = ({ resultado }) => {
   return (
     <div className="mt-4 p-4 bg-gray-100 rounded">
+      <p><strong>Valor Inicial:</strong> R$ {resultado.valorInicial.toFixed(2)}</p>
+      <p><strong>Valor Residual:</strong> R$ {resultado.valorResidual.toFixed(2)}</p>
       <p><strong>Depreciação Anual:</strong> R$ {resultado.depreciacaoAnual.toFixed(2)}</p>
       <p><strong>Valor Final:</strong> R$ {resultado.valorFinal.toFixed(2)}</p>
     </div>

@@ -5,6 +5,7 @@ export type DepreciacaoForm = {
   };
   
   export type DepreciacaoResponse = {
+    [x: string]: any;
     depreciacaoAnual: number;
     valorFinal: number;
   };

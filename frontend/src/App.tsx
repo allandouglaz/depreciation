@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles/style.css';
 import DepreciacaoCalculator from './components/DepreciacaoCalculator/DepreciacaoCalculator';
+import ResultadoDepreciacao from './components/DepreciacaoCalculator/ResultadoDepreciacao';
 
 const App: React.FC = () => {
   return (
