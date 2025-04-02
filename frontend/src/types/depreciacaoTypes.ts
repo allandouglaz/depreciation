@@ -1,7 +1,7 @@
 export type DepreciacaoForm = {
-    valorInicial: string;
-    valorResidual: string;
-    vidaUtil: string;
+    valorInicial: number;
+    valorResidual: number;
+    vidaUtil: number;
   };
   
   export type DepreciacaoResponse = {

@@ -6,9 +6,9 @@ import { DepreciacaoForm, DepreciacaoResponse } from "../../types/depreciacaoTyp
 
 const DepreciacaoCalculator: React.FC = () => {
   const [form, setForm] = useState<DepreciacaoForm>({
-    valorInicial: "",
-    valorResidual: "",
-    vidaUtil: ""
+    valorInicial: 0,
+    valorResidual: 0,
+    vidaUtil: 0
   });
   const [resultado, setResultado] = useState<DepreciacaoResponse | null>(null);
 

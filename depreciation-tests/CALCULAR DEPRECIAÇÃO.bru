@@ -1,0 +1,20 @@
+meta {
+  name: CALCULAR DEPRECIAÇÃO
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/depreciacao/calcular
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "valorInicial": 10000,
+    "vidaUtil": 5
+  }
+  
+  
+}
