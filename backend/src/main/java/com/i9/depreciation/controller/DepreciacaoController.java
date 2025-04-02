@@ -6,16 +6,17 @@ import com.i9.depreciation.service.DepreciacaoService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/depreciacao")
 public class DepreciacaoController {
 
-    private DepreciacaoService depreciacaoService;
+    private final DepreciacaoService service;
 
-    @CrossOrigin(origins = "http://localhost:3000") // Permite o frontend de localhost:3000
-    @PostMapping("/depreciacao")
-    public DepreciacaoResponseDto calcularDepreciacao(@RequestBody Depreciacao depreciacao) {
-        return depreciacaoService.calcularDepreciacao(depreciacao);
+    public DepreciacaoController(DepreciacaoService service) {
+        this.service = service;
     }
 
+    @PostMapping("/calcular")
+    public DepreciacaoResponseDto calcular(@RequestBody Depreciacao depreciacao) {
+        return service.calcularDepreciacao(depreciacao);
+    }
 }
-

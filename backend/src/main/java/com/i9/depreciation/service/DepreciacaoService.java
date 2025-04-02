@@ -6,6 +6,7 @@ import com.i9.depreciation.repository.DepreciacaoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class DepreciacaoService {
@@ -21,15 +22,20 @@ public class DepreciacaoService {
             throw new IllegalArgumentException("A vida útil deve ser maior que zero.");
         }
 
-        double depreciacaoAnual = (dto.getValorInicial() - dto.getValorResidual()) / dto.getVidaUtil();
+        // Se o valor residual não for informado, calcula automaticamente
+        double valorResidual = dto.getValorResidual();
+        if (valorResidual <= 0) {
+            valorResidual = dto.getValorInicial() * Math.pow(0.9, dto.getVidaUtil()); // 10% de depreciação por ano
+        }
+
+        double depreciacaoAnual = (dto.getValorInicial() - valorResidual) / dto.getVidaUtil();
         double valorFinal = dto.getValorInicial() - (depreciacaoAnual * dto.getVidaUtil());
 
-        Depreciacao depreciacao = new Depreciacao(dto.getValorInicial(), dto.getValorResidual(), dto.getVidaUtil());
+        Depreciacao depreciacao = new Depreciacao(dto.getValorInicial(), valorResidual, dto.getVidaUtil());
         repository.save(depreciacao);
 
         logger.info("Depreciação calculada e salva: {}", depreciacao);
 
-        return new DepreciacaoResponseDto(depreciacaoAnual, valorFinal, dto.getValorInicial(), dto.getValorResidual());
+        return new DepreciacaoResponseDto(depreciacaoAnual, valorFinal, dto.getValorInicial(), valorResidual);
     }
-
 }

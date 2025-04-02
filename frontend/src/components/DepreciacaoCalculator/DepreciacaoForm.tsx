@@ -1,9 +1,8 @@
 import React from "react";
-import './styles/style.css';
 
 
 type Props = {
-  form: { valorInicial: string; valorResidual: string; vidaUtil: string };
+  form: { valorInicial: number; valorResidual: number; vidaUtil: number};
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -19,6 +18,7 @@ const DepreciacaoForm: React.FC<Props> = ({ form, handleChange }) => {
       onChange={handleChange}
       className="w-full p-2 mb-2 border rounded"
     />
+
   </div>
   <div>
     <input
